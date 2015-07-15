@@ -3,8 +3,8 @@
 #include <string>
 #include <vector>
 
-std::vector<char> read_bytes(std::string);
-std::vector<char> bytes_xor(std::vector<char>, std::vector<char>);
+std::vector<char> readBytes(std::string);
+std::vector<char> bytesXOR(std::vector<char>, std::vector<char>);
 
 int main(int argc, char** argv)
 {
@@ -15,12 +15,12 @@ int main(int argc, char** argv)
 	}
 	else
 	{
-		std::vector<char> bytes = read_bytes(argv[1]);
+		std::vector<char> bytes = readBytes(argv[1]);
 		
 		std::string key_s(argv[2]);
 		std::vector<char> key(key_s.begin(), key_s.end());
 
-		std::vector<char> encrypted = bytes_xor(bytes, key);
+		std::vector<char> encrypted = bytesXOR(bytes, key);
 		std::string encrypted_s(encrypted.begin(), encrypted.end());
 		
 		std::ofstream ofs(argv[3], std::ofstream::binary);
@@ -31,7 +31,7 @@ int main(int argc, char** argv)
 	return 0;
 }
 
-std::vector<char> read_bytes(std::string filename)
+std::vector<char> readBytes(std::string filename)
 {
 	std::ifstream ifs(filename, std::ifstream::binary | std::ifstream::ate);
 	std::ifstream::pos_type pos = ifs.tellg();
@@ -46,7 +46,7 @@ std::vector<char> read_bytes(std::string filename)
 	return result;
 }
 
-std::vector<char> bytes_xor(std::vector<char> bytes, std::vector<char> key)
+std::vector<char> bytesXOR(std::vector<char> bytes, std::vector<char> key)
 {
 	const int bytesLen = bytes.size();
 	const int keyLen = key.size();
